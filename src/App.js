@@ -1,7 +1,10 @@
+import { Outlet } from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
-    <div className="App"></div>
+    <div className="App">
+      <Outlet />
+    </div>
   );
 }
 
