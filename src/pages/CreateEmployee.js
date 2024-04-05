@@ -1,4 +1,27 @@
 import { Link } from "react-router-dom";
+import { states } from '../data.js'
+
+window.$( function() {
+  const stateSelect = document.getElementById('state');
+  states.forEach(function(state) {
+      const option = document.createElement('option');
+      option.value = state.abbreviation;
+      option.text = state.name;
+      stateSelect.appendChild(option);
+  });
+
+  window.$( "#department" ).selectmenu();
+  window.$( "#state" ).selectmenu();
+
+  window.$('#date-of-birth').datetimepicker({
+      timepicker: false,
+      format: 'm/d/Y'
+  });
+  window.$('#start-date').datetimepicker({
+      timepicker: false,
+      format: 'm/d/Y'
+  });
+});
 
 const CreateEmployee = () => {
   return (
