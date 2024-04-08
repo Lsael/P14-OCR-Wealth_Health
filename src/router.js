@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import ErrorPage from './pages/ErrorPage'
 import CreateEmployee from './pages/CreateEmployee'
-import CurrentEmployees from './pages/CurrentsEmployees';
+import EmployeeList from './pages/EmployeeList';
 import App from './App';
 
 export const router = createBrowserRouter([
@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
         },
         {
           path: "currents",
-          element: <CurrentEmployees />,
+          element: <EmployeeList />,
         }
       ]
     },

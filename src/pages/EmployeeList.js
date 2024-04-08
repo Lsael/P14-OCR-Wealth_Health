@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const CurrentEmployees = () => {
+const EmployeeList = () => {
     return (
         <div id="employee-div" className="container">
             <h1>Current Employees</h1>
@@ -10,4 +10,4 @@ const CurrentEmployees = () => {
     );
   };
   
-  export default CurrentEmployees 
+  export default EmployeeList 

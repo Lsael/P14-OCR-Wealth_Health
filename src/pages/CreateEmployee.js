@@ -1,14 +1,19 @@
 import { Link } from "react-router-dom";
-import { states } from '../data.js'
+import { departments, states } from "../data.js";
+import SelectMenu from "../plugins/SelectMenu.js";
 
 const CreateEmployee = () => {
+  const statesList = states.map((e) => {
+    return e.name;
+  });
+
   return (
     <div className="CreateEmployee">
       <div className="title">
         <h1>HRnet</h1>
       </div>
       <div className="container">
-      <Link to="/currents">View Current Employees</Link>
+        <Link to="/currents">View Current Employees</Link>
         <h2>Create Employee</h2>
         <form action="#" id="create-employee">
           <label htmlFor="first-name">First Name</label>
@@ -33,20 +38,14 @@ const CreateEmployee = () => {
             <input id="city" type="text" />
 
             <label htmlFor="state">State</label>
-            <select name="state" id="state"></select>
+            <SelectMenu props={statesList} name="state" />
 
             <label htmlFor="zip-code">Zip Code</label>
             <input id="zip-code" type="number" />
           </fieldset>
 
           <label htmlFor="department">Department</label>
-          <select name="department" id="department">
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-          </select>
+          <SelectMenu props={departments} name="department" />
         </form>
 
         <button>Save</button>
