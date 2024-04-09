@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { departments, states } from "../data.js";
-import SelectMenu from "../plugins/SelectMenu.js";
+import Modal from "../plugins/Modal/Modal.js";
+import SelectMenu from "../plugins/SelectMenu/SelectMenu.js";
 
 const CreateEmployee = () => {
   const statesList = states.map((e) => {
@@ -50,9 +51,7 @@ const CreateEmployee = () => {
 
         <button>Save</button>
       </div>
-      <div id="confirmation" className="modal">
-        Employee Created!
-      </div>
+      <Modal />
     </div>
   );
 };
