@@ -244,3 +244,15 @@ export const departments = [
   "Human Resources",
   "Legal",
 ];
+
+export const employeesTableLabels = [
+  "First Name",
+  "Last Name",
+  "Start Date",
+  "Departement",
+  "Date of Birth",
+  "Street",
+  "City",
+  "State",
+  "Zip Code"
+]

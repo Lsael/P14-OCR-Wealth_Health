@@ -24,9 +24,9 @@ const CreateEmployee = () => {
           <label htmlFor="last-name">Last Name</label>
           <input type="text" id="last-name" />
 
-          <Datepicker name={'date-of-birth'} label={"Date of birth"} />
+          <Datepicker name={"date-of-birth"} label={"Date of birth"} />
 
-          <Datepicker name={'start-date'} label={"Start Date"} />
+          <Datepicker name={"start-date"} label={"Start Date"} />
 
           <fieldset className="address">
             <legend>Address</legend>
@@ -48,9 +48,11 @@ const CreateEmployee = () => {
           <SelectMenu props={departments} name="department" />
         </form>
 
-        <button onClick={() => OpenFadingModal("created-employee-modal", 3000)}>Save</button>
+        <button onClick={() => OpenFadingModal("created-employee-modal", 3000)}>
+          Save
+        </button>
       </div>
-      <Modal id="created-employee-modal" message={"Employee created!"}/>
+      <Modal id="created-employee-modal" message={"Employee created!"} />
     </div>
   );
 };
