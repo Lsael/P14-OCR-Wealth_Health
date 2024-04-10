@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { departments, states } from "../data.js";
+import Datepicker from "../plugins/Datepicker/Datepicker.js";
 import Modal, { OpenFadingModal } from "../plugins/Modal/Modal.js";
 import SelectMenu from "../plugins/SelectMenu/SelectMenu.js";
 
@@ -23,11 +24,9 @@ const CreateEmployee = () => {
           <label htmlFor="last-name">Last Name</label>
           <input type="text" id="last-name" />
 
-          <label htmlFor="date-of-birth">Date of Birth</label>
-          <input id="date-of-birth" type="text" />
+          <Datepicker name={'date-of-birth'} label={"Date of birth"} />
 
-          <label htmlFor="start-date">Start Date</label>
-          <input id="start-date" type="text" />
+          <Datepicker name={'start-date'} label={"Start Date"} />
 
           <fieldset className="address">
             <legend>Address</legend>

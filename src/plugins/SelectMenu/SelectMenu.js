@@ -1,7 +1,8 @@
+import styles from './SelectMenu.module.css'
 
 const SelectMenu = ({props, name}) => {
     return (
-        <select id={name} name={name} className="select-menu">
+        <select id={name} name={name} className={styles.selectMenu}>
             <option value="">-- Pick an option --</option>
             {
                 props.map((element, index) => {
