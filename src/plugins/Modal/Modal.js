@@ -1,9 +1,25 @@
 import styles from './Modal.module.css'
 
-const Modal = ({display}) => {
+export const OpenModal = (id) => {
+    document.querySelector(`#${id}`).showModal()
+}
+
+export const CloseModal = (id) => {
+    document.querySelector(`#${id}`).close()
+}
+
+export const OpenFadingModal = (id, duration) => {
+    document.querySelector(`#${id}`).showModal()
+
+    setTimeout(() => {
+        document.querySelector(`#${id}`).close()
+    }, duration)
+}
+
+const Modal = ({id, message}) => {
     return (
-        <dialog className={styles.modal} open>
-            <span>Employee Created!</span>
+        <dialog className={styles.modal} id={id} >
+            <span>{message}</span>
         </dialog>
     );
   };

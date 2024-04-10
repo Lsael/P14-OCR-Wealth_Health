@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { departments, states } from "../data.js";
-import Modal from "../plugins/Modal/Modal.js";
+import Modal, { OpenFadingModal } from "../plugins/Modal/Modal.js";
 import SelectMenu from "../plugins/SelectMenu/SelectMenu.js";
 
 const CreateEmployee = () => {
@@ -49,9 +49,9 @@ const CreateEmployee = () => {
           <SelectMenu props={departments} name="department" />
         </form>
 
-        <button>Save</button>
+        <button onClick={() => OpenFadingModal("created-employee-modal", 3000)}>Save</button>
       </div>
-      <Modal />
+      <Modal id="created-employee-modal" message={"Employee created!"}/>
     </div>
   );
 };

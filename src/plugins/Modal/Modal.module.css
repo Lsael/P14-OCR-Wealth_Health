@@ -1,5 +1,12 @@
 .modal {
-    position: fixed;
-    top: 50%;
-    transform: translate(0,-50%);
+    display: flex;
+    opacity: 0;
+    border: 2px gray solid;
+    padding: 8px 48px;
+    border-radius: 8px;
+}
+
+.modal[open] {
+    transition: 1s;
+    opacity: 1;
 }
