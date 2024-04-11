@@ -9,6 +9,14 @@ h1 {
     text-align: center;
 }
 
+td, tr {
+  text-align: center;
+}
+
+td {
+  padding: 8px 0;
+}
+
 .showEntries span {
   margin: 4px;
 }
@@ -27,4 +35,21 @@ h1 {
 
 .search label {
   margin: auto;
+}
+
+.emptyEntry {
+  background-color: rgba(211, 211, 211, 0.3);
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+}
+
+.tableFooter {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tableFooter span {
+  margin: 0 10px;
 }

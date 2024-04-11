@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { employeesTableLabels } from "../data";
+import { employeesExamples, employeesTableLabels } from "../data";
 import CustomTable from "../plugins/Table/CustomTable";
 
 const EmployeeList = () => {
@@ -9,6 +9,7 @@ const EmployeeList = () => {
         title={"Current Employees"}
         id={"employee-table"}
         labels={employeesTableLabels}
+        datas={employeesExamples}
       />
       <Link to="/new">Home</Link>
     </div>

@@ -256,3 +256,17 @@ export const employeesTableLabels = [
   "State",
   "Zip Code"
 ]
+
+export const employeesExamples = [
+  {
+    firstName: "John",
+    lastName: "Doe",
+    startDate: "01102020",
+    department: "sales",
+    dateOfBirth: "04071998",
+    street: "2nd Street",
+    city: "New York",
+    state: "New York",
+    zipcode: "10001"
+  }
+]

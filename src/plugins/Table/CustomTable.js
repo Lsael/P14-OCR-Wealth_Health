@@ -1,5 +1,21 @@
 import styles from "./CustomTable.module.css";
 
+const EntryLine = ({datas}) => {
+  return(
+    <tr className={styles.entryLine}>
+      <td>{datas.firstName}</td>
+      <td>{datas.lastName}</td>
+      <td>{datas.startDate}</td>
+      <td>{datas.department}</td>
+      <td>{datas.dateOfBirth}</td>
+      <td>{datas.street}</td>
+      <td>{datas.city}</td>
+      <td>{datas.state}</td>
+      <td>{datas.zipcode}</td>
+    </tr>
+  )
+}
+
 const CustomTable = ({ id, title, labels, datas }) => {
   return (
     <div className={styles.customTable}>
@@ -32,7 +48,25 @@ const CustomTable = ({ id, title, labels, datas }) => {
             })}
           </tr>
         </thead>
+        <tbody>
+          {
+            datas.length > 0 ?
+            datas.map((e, index) => {
+              return <EntryLine datas={e} key={"entry" + index} />
+            }) : 
+            <tr>
+              <td colSpan={9} className={styles.emptyEntry}>No data available in table</td>
+            </tr>
+          }
+        </tbody>
       </table>
+      <div className={styles.tableFooter}>
+          <span>Showing 0 to 0 of 0 entries</span>
+          <div className={styles.paging}>
+            <span>Previous</span>
+            <span>Next</span>
+          </div>
+      </div>
     </div>
   );
 };
