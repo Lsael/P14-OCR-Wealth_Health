@@ -261,9 +261,9 @@ export const employeesExamples = [
   {
     firstName: "John",
     lastName: "Doe",
-    startDate: "01102020",
+    startDate: "01/10/2020",
     department: "sales",
-    dateOfBirth: "04071998",
+    dateOfBirth: "04/07/1998",
     street: "2nd Street",
     city: "New York",
     state: "New York",
