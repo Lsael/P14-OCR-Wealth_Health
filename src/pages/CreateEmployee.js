@@ -9,6 +9,10 @@ const CreateEmployee = () => {
     return e.name;
   });
 
+  const handleValidation = () => {
+    
+  }
+
   return (
     <div className="CreateEmployee">
       <div className="title">
