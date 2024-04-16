@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "./CustomTable.module.css";
 
 const EntryLine = ({datas}) => {
@@ -16,14 +17,26 @@ const EntryLine = ({datas}) => {
   )
 }
 
+const Entries = ({datas, entriesMax}) => {
+  let entries = []
+  for(let i=0; i < entriesMax; i++) {
+    if(datas[i]) {
+      entries.push(<EntryLine datas={datas[i]} key={"entry" + i} />) 
+    } else break;
+  }
+  return entries
+}
+
 const CustomTable = ({ id, title, labels, datas }) => {
+  const [entriesMax, setEntriesMax] = useState("10")
+  
   return (
     <div className={styles.customTable}>
       <h1>{title}</h1>
       <div className={styles.tableHeader}>
         <div className={styles.showEntries}>
           <span>Show</span>
-          <select>
+          <select onChange={(e) => setEntriesMax(e.target.value)}>
             <option>10</option>
             <option>25</option>
             <option>50</option>
@@ -51,9 +64,7 @@ const CustomTable = ({ id, title, labels, datas }) => {
         <tbody>
           {
             datas.length > 0 ?
-            datas.map((e, index) => {
-              return <EntryLine datas={e} key={"entry" + index} />
-            }) : 
+            <Entries datas={datas} entriesMax={entriesMax}/> : 
             <tr>
               <td colSpan={9} className={styles.emptyEntry}>No data available in table</td>
             </tr>
