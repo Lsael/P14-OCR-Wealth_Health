@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styles from "./CustomTable.module.css";
 
-const EntryLine = ({datas}) => {
-  return(
+const EntryLine = ({ datas }) => {
+  return (
     <tr className={styles.entryLine}>
       <td>{datas.firstName}</td>
       <td>{datas.lastName}</td>
@@ -14,23 +14,28 @@ const EntryLine = ({datas}) => {
       <td>{datas.state}</td>
       <td>{datas.zipcode}</td>
     </tr>
-  )
-}
+  );
+};
 
-const Entries = ({datas, entriesPerPage, startIndex}) => {
-  let entries = []
-  for(let i=0; i < entriesPerPage; i++) {
-    if(datas[i + startIndex]) {
-      entries.push(<EntryLine datas={datas[i + startIndex]} key={"entry" + (i + startIndex)} />) 
+const Entries = ({ datas, entriesPerPage, startIndex }) => {
+  let entries = [];
+  for (let i = 0; i < entriesPerPage; i++) {
+    if (datas[i + startIndex]) {
+      entries.push(
+        <EntryLine
+          datas={datas[i + startIndex]}
+          key={"entry" + (i + startIndex)}
+        />
+      );
     } else break;
   }
-  return entries
-}
+  return entries;
+};
 
 const CustomTable = ({ id, title, labels, datas }) => {
-  const [entriesPerPage, setEntriesPerPage] = useState(10)
-  const [startIndex, setStartIndex] = useState(0)
-  
+  const [entriesPerPage, setEntriesPerPage] = useState(10);
+  const [startIndex, setStartIndex] = useState(0);
+
   return (
     <div className={styles.customTable}>
       <h1>{title}</h1>
@@ -63,21 +68,49 @@ const CustomTable = ({ id, title, labels, datas }) => {
           </tr>
         </thead>
         <tbody>
-          {
-            datas.length > 0 ?
-            <Entries datas={datas} entriesPerPage={entriesPerPage} startIndex={startIndex} /> : 
+          {datas.length > 0 ? (
+            <Entries
+              datas={datas}
+              entriesPerPage={entriesPerPage}
+              startIndex={startIndex}
+            />
+          ) : (
             <tr>
-              <td colSpan={9} className={styles.emptyEntry}>No data available in table</td>
+              <td colSpan={9} className={styles.emptyEntry}>
+                No data available in table
+              </td>
             </tr>
-          }
+          )}
         </tbody>
       </table>
       <div className={styles.tableFooter}>
-          <span>Showing 0 to 0 of 0 entries</span>
-          <div className={styles.paging}>
-            <span onClick={() => setStartIndex(startIndex - entriesPerPage)}>Previous</span>
-            <span onClick={() => setStartIndex(startIndex + entriesPerPage)}>Next</span>
-          </div>
+        <span>
+          Showing {startIndex + 1} to{" "}
+          {startIndex + entriesPerPage < datas.length
+            ? startIndex + entriesPerPage
+            : datas.length}{" "}
+          of {datas.length} entries
+        </span>
+        <div className={styles.paging}>
+          <span
+            onClick={() => {
+              if ((startIndex - entriesPerPage) >= 0) {
+                setStartIndex(startIndex - entriesPerPage);
+              }
+            }}
+          >
+            Previous
+          </span>
+          <span
+            onClick={() => {
+              if ((startIndex + entriesPerPage) < (datas.length)) {
+                setStartIndex(startIndex + entriesPerPage);
+              }
+            }}
+          >
+            Next
+          </span>
+        </div>
       </div>
     </div>
   );

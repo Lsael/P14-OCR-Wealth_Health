@@ -53,3 +53,7 @@ td {
 .tableFooter span {
   margin: 0 10px;
 }
+
+.paging span {
+  cursor: pointer;
+}

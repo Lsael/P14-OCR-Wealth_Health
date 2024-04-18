@@ -422,5 +422,71 @@ export const employeesExamples = [
     city: "Los Angeless",
     state: "Southern California",
     zipcode: "90001"
+  },
+  {
+    firstName: "Louise",
+    lastName: "Daniels",
+    startDate: "01/03/2024",
+    department: "human ressources",
+    dateOfBirth: "12/23/2002",
+    street: "Main Street",
+    city: "San Francisco",
+    state: "Northern California",
+    zipcode: "94102"
+  },
+  {
+    firstName: "Franck",
+    lastName: "Mitchell",
+    startDate: "08/15/2001",
+    department: "marketing",
+    dateOfBirth: "05/22/1978",
+    street: "21st Street",
+    city: "Los Angeless",
+    state: "Southern California",
+    zipcode: "90001"
+  },
+  {
+    firstName: "John",
+    lastName: "Doe",
+    startDate: "01/10/2020",
+    department: "sales",
+    dateOfBirth: "04/07/1998",
+    street: "2nd Street",
+    city: "New York",
+    state: "New York",
+    zipcode: "10001"
+  },
+  {
+    firstName: "Louise",
+    lastName: "Daniels",
+    startDate: "01/03/2024",
+    department: "human ressources",
+    dateOfBirth: "12/23/2002",
+    street: "Main Street",
+    city: "San Francisco",
+    state: "Northern California",
+    zipcode: "94102"
+  },
+  {
+    firstName: "Franck",
+    lastName: "Mitchell",
+    startDate: "08/15/2001",
+    department: "marketing",
+    dateOfBirth: "05/22/1978",
+    street: "21st Street",
+    city: "Los Angeless",
+    state: "Southern California",
+    zipcode: "90001"
+  },
+  {
+    firstName: "Franck",
+    lastName: "Mitchell",
+    startDate: "08/15/2001",
+    department: "marketing",
+    dateOfBirth: "05/22/1978",
+    street: "21st Street",
+    city: "Los Angeless",
+    state: "Southern California",
+    zipcode: "90001"
   }
 ]
