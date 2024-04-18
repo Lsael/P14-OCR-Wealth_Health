@@ -17,18 +17,19 @@ const EntryLine = ({datas}) => {
   )
 }
 
-const Entries = ({datas, entriesMax}) => {
+const Entries = ({datas, entriesPerPage, startIndex}) => {
   let entries = []
-  for(let i=0; i < entriesMax; i++) {
-    if(datas[i]) {
-      entries.push(<EntryLine datas={datas[i]} key={"entry" + i} />) 
+  for(let i=0; i < entriesPerPage; i++) {
+    if(datas[i + startIndex]) {
+      entries.push(<EntryLine datas={datas[i + startIndex]} key={"entry" + (i + startIndex)} />) 
     } else break;
   }
   return entries
 }
 
 const CustomTable = ({ id, title, labels, datas }) => {
-  const [entriesMax, setEntriesMax] = useState("10")
+  const [entriesPerPage, setEntriesPerPage] = useState(10)
+  const [startIndex, setStartIndex] = useState(0)
   
   return (
     <div className={styles.customTable}>
@@ -36,7 +37,7 @@ const CustomTable = ({ id, title, labels, datas }) => {
       <div className={styles.tableHeader}>
         <div className={styles.showEntries}>
           <span>Show</span>
-          <select onChange={(e) => setEntriesMax(e.target.value)}>
+          <select onChange={(e) => setEntriesPerPage(parseInt(e.target.value))}>
             <option>10</option>
             <option>25</option>
             <option>50</option>
@@ -64,7 +65,7 @@ const CustomTable = ({ id, title, labels, datas }) => {
         <tbody>
           {
             datas.length > 0 ?
-            <Entries datas={datas} entriesMax={entriesMax}/> : 
+            <Entries datas={datas} entriesPerPage={entriesPerPage} startIndex={startIndex} /> : 
             <tr>
               <td colSpan={9} className={styles.emptyEntry}>No data available in table</td>
             </tr>
@@ -74,8 +75,8 @@ const CustomTable = ({ id, title, labels, datas }) => {
       <div className={styles.tableFooter}>
           <span>Showing 0 to 0 of 0 entries</span>
           <div className={styles.paging}>
-            <span>Previous</span>
-            <span>Next</span>
+            <span onClick={() => setStartIndex(startIndex - entriesPerPage)}>Previous</span>
+            <span onClick={() => setStartIndex(startIndex + entriesPerPage)}>Next</span>
           </div>
       </div>
     </div>
