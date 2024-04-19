@@ -1,16 +1,42 @@
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { departments, states } from "../data.js";
 import Datepicker from "../plugins/Datepicker/Datepicker.js";
 import Modal, { OpenFadingModal } from "../plugins/Modal/Modal.js";
 import SelectMenu from "../plugins/SelectMenu/SelectMenu.js";
+import { addEmployee } from "../redux/employeesSlice.js";
 
 const CreateEmployee = () => {
+  const dispatch = useDispatch()
+
   const statesList = states.map((e) => {
     return e.name;
   });
 
   const handleValidation = () => {
-    
+    const firstName = document.querySelector("#first-name").value
+    const lastName = document.querySelector("#last-name").value
+    const dateOfBirth = document.querySelector("#date-of-birth").value
+    const startDate = document.querySelector("#start-date").value
+    const street = document.querySelector("#street").value
+    const city = document.querySelector("#city").value
+    const state = document.querySelector("#state").value
+    const zipCode = document.querySelector("#zip-code").value
+    const department = document.querySelector("#department").value
+
+    const newEmployee = {
+      firstName: firstName,
+      lastName: lastName,
+      dateOfBirth: dateOfBirth,
+      startDate: startDate,
+      street: street,
+      city: city,
+      state: state,
+      zipCode: zipCode,
+      department: department
+    }
+
+    dispatch(addEmployee(newEmployee))
   }
 
   return (
@@ -52,7 +78,10 @@ const CreateEmployee = () => {
           <SelectMenu props={departments} name="department" />
         </form>
 
-        <button onClick={() => OpenFadingModal("created-employee-modal", 3000)}>
+        <button onClick={() => {
+          OpenFadingModal("created-employee-modal", 3000)
+          handleValidation()
+          }}>
           Save
         </button>
       </div>
