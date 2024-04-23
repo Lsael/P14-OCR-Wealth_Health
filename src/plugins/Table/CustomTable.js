@@ -35,6 +35,18 @@ const Entries = ({ datas, entriesPerPage, startIndex }) => {
 const CustomTable = ({ id, title, labels, datas }) => {
   const [entriesPerPage, setEntriesPerPage] = useState(10);
   const [startIndex, setStartIndex] = useState(0);
+  const [tableDatas, setTableDatas] = useState(datas)
+
+  const handleSearch = (e) => {
+    const filteredEntries = datas.filter((element) => {
+      for (let key in element) {
+        if(element[key].toUpperCase().match(e.target.value.toUpperCase())) {
+          return true;
+        };
+      }
+    })
+    setTableDatas(filteredEntries)
+  }
 
   return (
     <div className={styles.customTable}>
@@ -52,7 +64,7 @@ const CustomTable = ({ id, title, labels, datas }) => {
         </div>
         <div className={styles.search}>
           <label htmlFor="table-search">Search:</label>
-          <input id="table-search" type={"text"}></input>
+          <input id="table-search" type={"text"} onChange={handleSearch}></input>
         </div>
       </div>
       <table id={id}>
@@ -68,9 +80,9 @@ const CustomTable = ({ id, title, labels, datas }) => {
           </tr>
         </thead>
         <tbody>
-          {datas.length > 0 ? (
+          {tableDatas.length > 0 ? (
             <Entries
-              datas={datas}
+              datas={tableDatas}
               entriesPerPage={entriesPerPage}
               startIndex={startIndex}
             />
@@ -86,10 +98,10 @@ const CustomTable = ({ id, title, labels, datas }) => {
       <div className={styles.tableFooter}>
         <span>
           Showing {startIndex + 1} to{" "}
-          {startIndex + entriesPerPage < datas.length
+          {startIndex + entriesPerPage < tableDatas.length
             ? startIndex + entriesPerPage
-            : datas.length}{" "}
-          of {datas.length} entries
+            : tableDatas.length}{" "}
+          of {tableDatas.length} entries
         </span>
         <div className={styles.paging}>
           <span
@@ -103,7 +115,7 @@ const CustomTable = ({ id, title, labels, datas }) => {
           </span>
           <span
             onClick={() => {
-              if ((startIndex + entriesPerPage) < (datas.length)) {
+              if ((startIndex + entriesPerPage) < (tableDatas.length)) {
                 setStartIndex(startIndex + entriesPerPage);
               }
             }}
