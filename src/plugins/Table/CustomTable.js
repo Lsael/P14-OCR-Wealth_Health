@@ -1,29 +1,26 @@
 import { useState } from "react";
 import styles from "./CustomTable.module.css";
 
-const EntryLine = ({ datas }) => {
+const EntryLine = ({ datas, labels }) => {
   return (
     <tr className={styles.entryLine}>
-      <td>{datas.firstName}</td>
-      <td>{datas.lastName}</td>
-      <td>{datas.startDate}</td>
-      <td>{datas.department}</td>
-      <td>{datas.dateOfBirth}</td>
-      <td>{datas.street}</td>
-      <td>{datas.city}</td>
-      <td>{datas.state}</td>
-      <td>{datas.zipcode}</td>
+      {
+        labels.map((e) => {
+          return <td>{datas[e.id]}</td> 
+        })
+      }
     </tr>
   );
 };
 
-const Entries = ({ datas, entriesPerPage, startIndex }) => {
+const Entries = ({ datas, labels, entriesPerPage, startIndex }) => {
   let entries = [];
   for (let i = 0; i < entriesPerPage; i++) {
     if (datas[i + startIndex]) {
       entries.push(
         <EntryLine
           datas={datas[i + startIndex]}
+          labels={labels}
           key={"entry" + (i + startIndex)}
         />
       );
@@ -93,6 +90,7 @@ const CustomTable = ({ id, title, labels, datas }) => {
           {tableDatas.length > 0 ? (
             <Entries
               datas={tableDatas}
+              labels={labels}
               entriesPerPage={entriesPerPage}
               startIndex={startIndex}
             />
