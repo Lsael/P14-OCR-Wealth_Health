@@ -48,6 +48,16 @@ const CustomTable = ({ id, title, labels, datas }) => {
     setTableDatas(filteredEntries)
   }
 
+  const handleSort = (e) => {
+    const name = e.target.getAttribute("name")
+    const sortedEntries = [...tableDatas].sort((a, b) => {
+      if (a[name] < b[name]) return -1;
+      if (a[name] > b[name]) return 1;
+      return 0;
+    })
+    setTableDatas(sortedEntries)
+  }
+
   return (
     <div className={styles.customTable}>
       <h1>{title}</h1>
@@ -72,8 +82,8 @@ const CustomTable = ({ id, title, labels, datas }) => {
           <tr>
             {labels.map((e, index) => {
               return (
-                <th scope="col" key={e + index}>
-                  {e}
+                <th scope="col" key={e.label + index} name={e.id} className={styles.labels} onClick={handleSort}>
+                  {e.label}
                 </th>
               );
             })}

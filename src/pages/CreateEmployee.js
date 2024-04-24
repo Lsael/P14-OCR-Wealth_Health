@@ -8,38 +8,38 @@ import SelectMenu from "../plugins/SelectMenu/SelectMenu.js";
 import { addEmployee } from "../redux/employeesSlice.js";
 
 const CreateEmployee = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [newEmployee, setNewEmployee] = useState({
     firstName: "",
-      lastName: "",
-      dateOfBirth: "",
-      startDate: "",
-      street: "",
-      city: "",
-      state: "",
-      zipCode: "",
-      department: ""
-  })
+    lastName: "",
+    dateOfBirth: "",
+    startDate: "",
+    street: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    department: "",
+  });
 
   const statesList = states.map((e) => {
     return e.name;
   });
 
   const handleValidation = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    OpenFadingModal("created-employee-modal", 3000)
-    dispatch(addEmployee(newEmployee))
-  }
+    OpenFadingModal("created-employee-modal", 3000);
+    dispatch(addEmployee(newEmployee));
+  };
 
   const handleInputChange = (e) => {
     console.log("ok");
-    const { name, value } = e.target
-    const changedEmployee = {...newEmployee}
-    changedEmployee[name] = value
+    const { name, value } = e.target;
+    const changedEmployee = { ...newEmployee };
+    changedEmployee[name] = value;
     console.log(changedEmployee);
-    setNewEmployee(changedEmployee)
-  }
+    setNewEmployee(changedEmployee);
+  };
 
   return (
     <div className="CreateEmployee">
@@ -51,14 +51,36 @@ const CreateEmployee = () => {
         <h2>Create Employee</h2>
         <form id="create-employee" onSubmit={handleValidation}>
           <label htmlFor="first-name">First Name</label>
-          <input type="text" id="first-name" name="firstName" value={newEmployee.firstName} onChange={handleInputChange} />
+          <input
+            type="text"
+            id="first-name"
+            name="firstName"
+            value={newEmployee.firstName}
+            onChange={handleInputChange}
+          />
 
           <label htmlFor="last-name">Last Name</label>
-          <input type="text" id="last-name" name="lastName" value={newEmployee.lastName} onChange={handleInputChange}/>
+          <input
+            type="text"
+            id="last-name"
+            name="lastName"
+            value={newEmployee.lastName}
+            onChange={handleInputChange}
+          />
 
-          <Datepicker name={"dateOfBirth"} label={"Date of birth"} value={newEmployee.dateOfBirth} callback={handleInputChange} />
+          <Datepicker
+            name={"dateOfBirth"}
+            label={"Date of birth"}
+            value={newEmployee.dateOfBirth}
+            callback={handleInputChange}
+          />
 
-          <Datepicker name={"startDate"} label={"Start Date"} value={newEmployee.startDate} callback={handleInputChange} />
+          <Datepicker
+            name={"startDate"}
+            label={"Start Date"}
+            value={newEmployee.startDate}
+            callback={handleInputChange}
+          />
 
           <fieldset className="address">
             <legend>Address</legend>
@@ -80,9 +102,7 @@ const CreateEmployee = () => {
           <SelectMenu props={departments} name="department" />
         </form>
 
-        <button>
-          Save
-        </button>
+        <button>Save</button>
       </div>
       <Modal id="created-employee-modal" message={"Employee created!"} />
     </div>

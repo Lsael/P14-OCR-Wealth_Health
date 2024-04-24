@@ -246,15 +246,42 @@ export const departments = [
 ];
 
 export const employeesTableLabels = [
-  "First Name",
-  "Last Name",
-  "Start Date",
-  "Departement",
-  "Date of Birth",
-  "Street",
-  "City",
-  "State",
-  "Zip Code"
+  {
+    label: "First Name",
+    id: "firstName"
+  },
+  {
+    label: "Last Name",
+    id: "lastName"
+  },
+  {
+    label: "Start Date",
+    id: "startDate"
+  },
+  {
+    label: "Department",
+    id: "department"
+  },
+  {
+    label: "Date of Birth",
+    id: "dateOfBirth"
+  },
+  {
+    label: "Street",
+    id: "street"
+  },
+  {
+    label: "City",
+    id: "city"
+  },
+  {
+    label: "State",
+    id: "state"
+  },
+  {
+    label: "Zip Code",
+    id: "zipcode"
+  }
 ]
 
 export const employeesExamples = [

@@ -37,6 +37,10 @@ td {
   margin: auto;
 }
 
+.labels {
+  cursor: pointer;
+}
+
 .emptyEntry {
   background-color: rgba(211, 211, 211, 0.3);
   border-bottom: 1px solid black;
