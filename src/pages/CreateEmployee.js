@@ -33,11 +33,9 @@ const CreateEmployee = () => {
   };
 
   const handleInputChange = (e) => {
-    console.log("ok");
     const { name, value } = e.target;
     const changedEmployee = { ...newEmployee };
     changedEmployee[name] = value;
-    console.log(changedEmployee);
     setNewEmployee(changedEmployee);
   };
 
