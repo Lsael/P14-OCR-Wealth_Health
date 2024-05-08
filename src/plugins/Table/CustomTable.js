@@ -1,27 +1,40 @@
 import { useState } from "react";
 import styles from "./CustomTable.module.css";
 
-const EntryLine = ({ datas, labels }) => {
+const EntryLine = ({ datas, labels, backgroundColor, fontColor }) => {
   return (
     <tr className={styles.entryLine}>
-      {
-        labels.map((e) => {
-          return <td>{datas[e.id]}</td> 
-        })
-      }
+      {labels.map((e, index) => {
+        return <td key={"entryLine" + index} style={{
+          background: backgroundColor,
+          color: fontColor
+        }}>{datas[e.id]}</td>;
+      })}
     </tr>
   );
 };
 
-const Entries = ({ datas, labels, entriesPerPage, startIndex }) => {
+const Entries = ({ datas, labels, entriesPerPage, startIndex, options }) => {
+  const colors = {
+    evenBackground: options.evenLines ? options.evenLines : "inherit",
+    oddBackground: options.oddLines ? options.oddLines : "inherit",
+    evenFont: options.evenFont ? options.evenFont : "inherit",
+    oddFont: options.oddFont ? options.oddFont : "inherit"
+  }
+
   let entries = [];
   for (let i = 0; i < entriesPerPage; i++) {
+    const backgroundColor = (i % 2 == 1) ? colors.evenBackground : colors.oddBackground
+    const fontColor = (i % 2 == 1) ? colors.evenFont : colors.oddFont
+
     if (datas[i + startIndex]) {
       entries.push(
         <EntryLine
           datas={datas[i + startIndex]}
           labels={labels}
           key={"entry" + (i + startIndex)}
+          backgroundColor={backgroundColor}
+          fontColor={fontColor}
         />
       );
     } else break;
@@ -29,39 +42,61 @@ const Entries = ({ datas, labels, entriesPerPage, startIndex }) => {
   return entries;
 };
 
-const CustomTable = ({ id, title, labels, datas }) => {
+/* 
+options {
+  headerBackground: black,
+  headerFont: white,
+  LineFont: white,
+  evenLines: green,
+  oddLines: blue,
+}
+*/
+
+const CustomTable = ({ id, title, labels, datas, options }) => {
   const [entriesPerPage, setEntriesPerPage] = useState(10);
   const [startIndex, setStartIndex] = useState(0);
-  const [tableDatas, setTableDatas] = useState(datas)
+  const [tableDatas, setTableDatas] = useState(datas);
+  const tableOptions = options ? options : {
+    headerBackground: undefined,
+    headerFont: undefined,
+    LineFont: undefined,
+    evenLines: undefined,
+    oddLines: undefined,
+  }
 
   const handleSearch = (e) => {
     const filteredEntries = datas.filter((element) => {
       for (let key in element) {
-        if(element[key].toUpperCase().match(e.target.value.toUpperCase())) {
+        if (element[key].toUpperCase().match(e.target.value.toUpperCase())) {
           return true;
-        };
+        }
       }
-    })
-    setTableDatas(filteredEntries)
-  }
+    });
+    setTableDatas(filteredEntries);
+  };
 
   const handleSort = (e) => {
-    const name = e.target.getAttribute("name")
+    const name = e.target.getAttribute("name");
     const sortedEntries = [...tableDatas].sort((a, b) => {
       if (a[name] < b[name]) return -1;
       if (a[name] > b[name]) return 1;
       return 0;
-    })
-    setTableDatas(sortedEntries)
-  }
+    });
+    setTableDatas(sortedEntries);
+  };
 
   return (
     <div className={styles.customTable}>
-      <h1>{title}</h1>
+      <h2>{title}</h2>
       <div className={styles.tableHeader}>
         <div className={styles.showEntries}>
           <span>Show</span>
-          <select onChange={(e) => setEntriesPerPage(parseInt(e.target.value))}>
+          <select
+            onChange={(e) => {
+              setEntriesPerPage(parseInt(e.target.value));
+              setStartIndex(0);
+            }}
+          >
             <option>10</option>
             <option>25</option>
             <option>50</option>
@@ -70,16 +105,35 @@ const CustomTable = ({ id, title, labels, datas }) => {
           <span>Entries</span>
         </div>
         <div className={styles.search}>
-          <label htmlFor="table-search">Search:</label>
-          <input id="table-search" type={"text"} onChange={handleSearch}></input>
+          <input
+            id="table-search"
+            type={"text"}
+            onChange={handleSearch}
+            placeholder="Search ..."
+          ></input>
         </div>
       </div>
       <table id={id}>
         <thead>
-          <tr>
+          <tr
+            style={{
+              color: tableOptions.headerFont
+                ? tableOptions.headerFont
+                : "inherit",
+              backgroundColor: tableOptions.headerBackground
+                ? tableOptions.headerBackground
+                : "inherit",
+            }}
+          >
             {labels.map((e, index) => {
               return (
-                <th scope="col" key={e.label + index} name={e.id} className={styles.labels} onClick={handleSort}>
+                <th
+                  scope="col"
+                  key={e.label + index}
+                  name={e.id}
+                  className={styles.labels}
+                  onClick={handleSort}
+                >
                   {e.label}
                 </th>
               );
@@ -93,6 +147,7 @@ const CustomTable = ({ id, title, labels, datas }) => {
               labels={labels}
               entriesPerPage={entriesPerPage}
               startIndex={startIndex}
+              options={options}
             />
           ) : (
             <tr>
@@ -114,7 +169,7 @@ const CustomTable = ({ id, title, labels, datas }) => {
         <div className={styles.paging}>
           <span
             onClick={() => {
-              if ((startIndex - entriesPerPage) >= 0) {
+              if (startIndex - entriesPerPage >= 0) {
                 setStartIndex(startIndex - entriesPerPage);
               }
             }}
@@ -123,7 +178,7 @@ const CustomTable = ({ id, title, labels, datas }) => {
           </span>
           <span
             onClick={() => {
-              if ((startIndex + entriesPerPage) < (tableDatas.length)) {
+              if (startIndex + entriesPerPage < tableDatas.length) {
                 setStartIndex(startIndex + entriesPerPage);
               }
             }}
