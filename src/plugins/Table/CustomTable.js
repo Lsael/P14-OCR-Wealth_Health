@@ -24,8 +24,8 @@ const Entries = ({ datas, labels, entriesPerPage, startIndex, options }) => {
 
   let entries = [];
   for (let i = 0; i < entriesPerPage; i++) {
-    const backgroundColor = (i % 2 == 1) ? colors.evenBackground : colors.oddBackground
-    const fontColor = (i % 2 == 1) ? colors.evenFont : colors.oddFont
+    const backgroundColor = (i % 2 === 1) ? colors.evenBackground : colors.oddBackground
+    const fontColor = (i % 2 === 1) ? colors.evenFont : colors.oddFont
 
     if (datas[i + startIndex]) {
       entries.push(
@@ -41,16 +41,6 @@ const Entries = ({ datas, labels, entriesPerPage, startIndex, options }) => {
   }
   return entries;
 };
-
-/* 
-options {
-  headerBackground: black,
-  headerFont: white,
-  LineFont: white,
-  evenLines: green,
-  oddLines: blue,
-}
-*/
 
 const CustomTable = ({ id, title, labels, datas, options }) => {
   const [entriesPerPage, setEntriesPerPage] = useState(10);

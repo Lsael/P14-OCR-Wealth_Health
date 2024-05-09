@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import CustomTable from "react-simplest-table";
 import { employeesTableLabels } from "../data";
-import CustomTable from "../plugins/Table/CustomTable";
+/* import CustomTable from "../plugins/Table/CustomTable"; */
 
 const EmployeeList = () => {
   const employees = useSelector((state) => state.employees);
