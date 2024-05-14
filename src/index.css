@@ -53,7 +53,12 @@ input, select {
 }
 
 button {
-    margin: 20px 0;
+    margin: 20px auto;
     padding: 10px 20px;
     background-color: lightgray;
+}
+
+#create-employee {
+  display: flex;
+  flex-direction: column;
 }

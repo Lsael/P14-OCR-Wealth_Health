@@ -17,7 +17,7 @@ const CreateEmployee = () => {
     street: "",
     city: "",
     state: "",
-    zipCode: "",
+    zipcode: "",
     department: "",
   });
 
@@ -38,6 +38,8 @@ const CreateEmployee = () => {
     changedEmployee[name] = value;
     setNewEmployee(changedEmployee);
   };
+
+  console.log(newEmployee);
 
   return (
     <div className="CreateEmployee">
@@ -84,23 +86,50 @@ const CreateEmployee = () => {
             <legend>Address</legend>
 
             <label htmlFor="street">Street</label>
-            <input id="street" type="text" />
+            <input
+              id="street"
+              name="street"
+              type="text"
+              value={newEmployee.street}
+              onChange={handleInputChange}
+            />
 
             <label htmlFor="city">City</label>
-            <input id="city" type="text" />
+            <input
+              id="city"
+              type="text"
+              name="city"
+              value={newEmployee.city}
+              onChange={handleInputChange}
+            />
 
             <label htmlFor="state">State</label>
-            <SelectMenu props={statesList} name="state" />
+            <SelectMenu
+              list={statesList}
+              name="state"
+              value={newEmployee.state}
+              callback={handleInputChange}
+            />
 
             <label htmlFor="zip-code">Zip Code</label>
-            <input id="zip-code" type="number" />
+            <input
+              id="zip-code"
+              name="zipcode"
+              type="number"
+              value={newEmployee.zipcode}
+              onChange={handleInputChange}
+            />
           </fieldset>
 
           <label htmlFor="department">Department</label>
-          <SelectMenu props={departments} name="department" />
+          <SelectMenu
+            list={departments}
+            name="department"
+            value={newEmployee.department}
+            callback={handleInputChange}
+          />
+          <button type="submit">Save</button>
         </form>
-
-        <button>Save</button>
       </div>
       <Modal id="created-employee-modal" message={"Employee created!"} />
     </div>
