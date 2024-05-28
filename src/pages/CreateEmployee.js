@@ -39,8 +39,6 @@ const CreateEmployee = () => {
     setNewEmployee(changedEmployee);
   };
 
-  console.log(newEmployee);
-
   return (
     <div className="CreateEmployee">
       <div className="title">
